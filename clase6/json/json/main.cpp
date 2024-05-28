@@ -24,6 +24,7 @@ int main()
     JsonObject * company = new JsonObject();
     company->addElement(employeesTuple);
     company->addElement(bienesTuple);
+    company->addElement(new JsonTuple("Jefe", new JsonSimpleElement("Pablo")));
 
     JsonObject * root  = new JsonObject();
     root->addElement(new JsonTuple("company", company));
