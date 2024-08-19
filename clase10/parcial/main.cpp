@@ -2,18 +2,20 @@
 
 using namespace std;
 
-int XXX(int n);
+bool fx(int n);
 
 int main()
 {
-    cout << "1522, 645, 876." << endl;
-    cout << XXX(1522) << endl;
-    cout << XXX(645) << endl;
-    cout << XXX(876) << endl;
+    fx(17);
     return 0;
 }
 
-int XXX(int n) {
-    if(n < 10) return n;
-    return n%10+XXX(n/10);
+bool fx(int n) {
+    if (n > 0) {
+        if (fx(n - 2)) cout << " , ";
+            cout << n;
+            return true;
+        }
+    return false;
 }
+
