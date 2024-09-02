@@ -4,6 +4,10 @@
 
 using namespace std;
 
+double getTotal(double a, pair<string, double> elemento) {
+    return a + elemento.second;
+}
+
 int main()
 {
     map<string, double> bienes;
@@ -22,9 +26,7 @@ int main()
     auto total = accumulate(bienes.begin(),
                             bienes.end(),
                             0.0,
-     [] (double a, pair<string, double> elemento) -> double {
-            return a + elemento.second;
-});
+     getTotal);
     cout << total << endl;
     return 0;
 }
