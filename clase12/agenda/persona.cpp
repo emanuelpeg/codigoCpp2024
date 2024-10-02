@@ -38,6 +38,16 @@ void Persona::setContactos(const std::vector<Contacto> &newContactos)
     contactos = newContactos;
 }
 
+int Persona::getId() const
+{
+    return id;
+}
+
+void Persona::setId(int newId)
+{
+    id = newId;
+}
+
 Persona::Persona(char * newNombre)
 {
     nombre = new char(strlen(newNombre));

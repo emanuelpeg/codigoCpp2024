@@ -56,12 +56,18 @@ SOURCES       = ../agenda/agenda.cpp \
 		../agenda/contacto.cpp \
 		../agenda/main.cpp \
 		../agenda/mainwindow.cpp \
-		../agenda/persona.cpp moc_mainwindow.cpp
+		../agenda/persona.cpp \
+		../agenda/personadao.cpp \
+		../agenda/personadaofile.cpp \
+		../agenda/personadaomem.cpp moc_mainwindow.cpp
 OBJECTS       = agenda.o \
 		contacto.o \
 		main.o \
 		mainwindow.o \
 		persona.o \
+		personadao.o \
+		personadaofile.o \
+		personadaomem.o \
 		moc_mainwindow.o
 DIST          = /home/emanuel/Qt/6.4.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/emanuel/Qt/6.4.0/gcc_64/mkspecs/common/unix.conf \
@@ -342,11 +348,17 @@ DIST          = /home/emanuel/Qt/6.4.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../agenda/agenda.pro ../agenda/agenda.h \
 		../agenda/contacto.h \
 		../agenda/mainwindow.h \
-		../agenda/persona.h ../agenda/agenda.cpp \
+		../agenda/persona.h \
+		../agenda/personadao.h \
+		../agenda/personadaofile.h \
+		../agenda/personadaomem.h ../agenda/agenda.cpp \
 		../agenda/contacto.cpp \
 		../agenda/main.cpp \
 		../agenda/mainwindow.cpp \
-		../agenda/persona.cpp
+		../agenda/persona.cpp \
+		../agenda/personadao.cpp \
+		../agenda/personadaofile.cpp \
+		../agenda/personadaomem.cpp
 QMAKE_TARGET  = agenda
 DESTDIR       = 
 TARGET        = agenda
@@ -934,8 +946,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/emanuel/Qt/6.4.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../agenda/agenda.h ../agenda/contacto.h ../agenda/mainwindow.h ../agenda/persona.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../agenda/agenda.cpp ../agenda/contacto.cpp ../agenda/main.cpp ../agenda/mainwindow.cpp ../agenda/persona.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../agenda/agenda.h ../agenda/contacto.h ../agenda/mainwindow.h ../agenda/persona.h ../agenda/personadao.h ../agenda/personadaofile.h ../agenda/personadaomem.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../agenda/agenda.cpp ../agenda/contacto.cpp ../agenda/main.cpp ../agenda/mainwindow.cpp ../agenda/persona.cpp ../agenda/personadao.cpp ../agenda/personadaofile.cpp ../agenda/personadaomem.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../agenda/mainwindow.ui $(DISTDIR)/
 
 
@@ -1112,6 +1124,7 @@ moc_mainwindow.cpp: ../agenda/mainwindow.h \
 		../agenda/agenda.h \
 		../agenda/persona.h \
 		../agenda/contacto.h \
+		../agenda/personadao.h \
 		moc_predefs.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/libexec/moc
 	/home/emanuel/Qt/6.4.0/gcc_64/libexec/moc $(DEFINES) --include /home/emanuel/Facultad/programacion_orientada_objeto/2024/codigoCpp2024/clase12/build-agenda-Desktop-Debug/moc_predefs.h -I/home/emanuel/Qt/6.4.0/gcc_64/mkspecs/linux-g++ -I/home/emanuel/Facultad/programacion_orientada_objeto/2024/codigoCpp2024/clase12/agenda -I/home/emanuel/Qt/6.4.0/gcc_64/include -I/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets -I/home/emanuel/Qt/6.4.0/gcc_64/include/QtGui -I/home/emanuel/Qt/6.4.0/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../agenda/mainwindow.h -o moc_mainwindow.cpp
@@ -1139,7 +1152,10 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 agenda.o: ../agenda/agenda.cpp ../agenda/agenda.h \
 		../agenda/persona.h \
-		../agenda/contacto.h
+		../agenda/contacto.h \
+		../agenda/personadao.h \
+		../agenda/personadaofile.h \
+		../agenda/personadaomem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o agenda.o ../agenda/agenda.cpp
 
 contacto.o: ../agenda/contacto.cpp ../agenda/contacto.h
@@ -1286,6 +1302,7 @@ main.o: ../agenda/main.cpp ../agenda/mainwindow.h \
 		../agenda/agenda.h \
 		../agenda/persona.h \
 		../agenda/contacto.h \
+		../agenda/personadao.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QApplication \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qapplication.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1451,6 +1468,7 @@ mainwindow.o: ../agenda/mainwindow.cpp ../agenda/mainwindow.h \
 		../agenda/agenda.h \
 		../agenda/persona.h \
 		../agenda/contacto.h \
+		../agenda/personadao.h \
 		ui_mainwindow.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtCore/QVariant \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QApplication \
@@ -1506,20 +1524,13 @@ mainwindow.o: ../agenda/mainwindow.cpp ../agenda/mainwindow.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QMenuBar \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qmenubar.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qmenu.h \
-		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QPlainTextEdit \
-		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qplaintextedit.h \
-		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qtextedit.h \
-		/home/emanuel/Qt/6.4.0/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
-		/home/emanuel/Qt/6.4.0/gcc_64/include/QtGui/qtextlayout.h \
-		/home/emanuel/Qt/6.4.0/gcc_64/include/QtGui/qglyphrun.h \
-		/home/emanuel/Qt/6.4.0/gcc_64/include/QtGui/qrawfont.h \
-		/home/emanuel/Qt/6.4.0/gcc_64/include/QtGui/qfontdatabase.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QPushButton \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QStatusBar \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qstatusbar.h \
-		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QTableView \
+		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QTableWidget \
+		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qtablewidget.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qtableview.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QVBoxLayout \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qboxlayout.h \
@@ -1528,12 +1539,30 @@ mainwindow.o: ../agenda/mainwindow.cpp ../agenda/mainwindow.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/qgridlayout.h \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QWidget \
 		../agenda/customtablemodel.h \
+		/home/emanuel/Qt/6.4.0/gcc_64/include/QtWidgets/QTableView \
 		/home/emanuel/Qt/6.4.0/gcc_64/include/QtCore/QAbstractTableModel
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../agenda/mainwindow.cpp
 
 persona.o: ../agenda/persona.cpp ../agenda/persona.h \
 		../agenda/contacto.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o persona.o ../agenda/persona.cpp
+
+personadao.o: ../agenda/personadao.cpp ../agenda/personadao.h \
+		../agenda/persona.h \
+		../agenda/contacto.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o personadao.o ../agenda/personadao.cpp
+
+personadaofile.o: ../agenda/personadaofile.cpp ../agenda/personadaofile.h \
+		../agenda/personadao.h \
+		../agenda/persona.h \
+		../agenda/contacto.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o personadaofile.o ../agenda/personadaofile.cpp
+
+personadaomem.o: ../agenda/personadaomem.cpp ../agenda/personadaomem.h \
+		../agenda/persona.h \
+		../agenda/contacto.h \
+		../agenda/personadao.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o personadaomem.o ../agenda/personadaomem.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

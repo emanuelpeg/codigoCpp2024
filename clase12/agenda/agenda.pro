@@ -13,13 +13,19 @@ SOURCES += \
     contacto.cpp \
     main.cpp \
     mainwindow.cpp \
-    persona.cpp
+    persona.cpp \
+    personadao.cpp \
+    personadaofile.cpp \
+    personadaomem.cpp
 
 HEADERS += \
     agenda.h \
     contacto.h \
     mainwindow.h \
-    persona.h
+    persona.h \
+    personadao.h \
+    personadaofile.h \
+    personadaomem.h
 
 FORMS += \
     mainwindow.ui

@@ -32,7 +32,7 @@ void MainWindow::on_pushButton_clicked()
             .toStdString().c_str();
 
     p.setDir((char*)dir);
-    agenda->add(p);
+    agenda->save(p);
     this->refrescar();
 }
 

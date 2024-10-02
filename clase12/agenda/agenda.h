@@ -2,30 +2,17 @@
 #define AGENDA_H
 #include <vector>
 #include "persona.h"
-
-struct strPersona
-{
-    int id;
-    char nombre[100];
-    char dir[150];
-};
-
-struct strContacto
-{
-  int id_persona;
-  char tipo[100];
-  char valor[150];
-};
-
+#include "personadao.h"
 class Agenda
 {
 private:
     std::vector<Persona> personas;
+    PersonaDao * dao;
 
 public:
     Agenda();
     void leer();
-    bool add(Persona persona);
+    bool save(Persona persona);
     void generarDatosDeEjemplo();
     std::vector<Persona> filtrar(char * nombre);
     const std::vector<Persona> &getPersonas() const;
