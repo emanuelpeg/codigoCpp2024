@@ -1,0 +1,64 @@
+void Encuesta::agregar(PregYResp* pyr){
+  if (pyr == null) 
+  cout << "Ingrese Pregunta"; 
+  
+  if (pyr.tipo == 'p') 
+  cout << "Ingrese Pregunta";
+  else cout << "Ingrese Respuesta";
+  
+  cin >> txt; 
+  cin >> nro;
+  PregYResp * newPreYResp= new PregYResp(txt, 'p', nro); 
+  
+  if (pyr != null && pyr.tipo == 'p')
+     pyr.pyrs.push_back(newPreYResp);
+     cin<< nroRespuesta; 
+     while (nro < nroRespuesta) {
+     nro++;
+     agregar(newPreYResp);
+     }
+  else if (pyr != null && pyr.tipo == 'r')
+     pyr.pyrs.push_back(newPreYResp);
+     cout << "tiene preguntas"
+     cin >> valor 
+     if (valor == 's') agregar(newPreYResp);
+  if (pyr == null) this-> preguntas.push_back(newPreYResp);
+
+}
+
+strPyR 
+  id
+  id_padre
+  txt
+  tipo
+
+guardar(pyr, PregYResp* padre) {
+   str.txt = pyr.txt;
+   str.tipo = pyr.tipo;
+   str.id = pyr.id; 
+   if (padre != null) str.id_padre = padre.id;
+   ofstream archi("pyr.bin", ios::binary); 
+   archi.write((char*) &str, sizeof(strPyR));
+   archi.close(); 
+   for (int i = 0; i < pyr.resp.size(); i++) 
+      guardar(pyr.resp[i], pyr);
+}
+  
+  
+  
+mostrar(vector<PregYResp> preguntas) {
+  for(int i = 0; i < preguntas.size(); i++) {
+    cout << preguntas[i].txt;
+    for(int j = 0; j < preguntas[i].resp.size(); j++) {
+       cout << preguntas[i].resp[j].txt;
+     }
+     cin >> nro;
+     if (preguntas[i].resp[nro].resp.size > 0) 
+         mostrar(vector<PregYResp> preguntas[i].resp[nro].resp);
+  }
+}
+  
+  
+mostrartodo() {
+  mostrar(this-> preguntas);
+}
